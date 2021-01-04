@@ -33,4 +33,4 @@ class OrderSummary extends Component {
     }
 }
 
-export default OrderSummary
+export default OrderSummary;
