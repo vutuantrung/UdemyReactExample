@@ -3,7 +3,7 @@ import classes from './Spinner.module.css';
 
 function Spinner() {
     return (
-        <div class={classes.Loader}>Loading...</div>
+        <div className={classes.Loader}>Loading...</div>
     )
 }
 
