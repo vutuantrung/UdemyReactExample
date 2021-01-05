@@ -5,7 +5,7 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Auxiliary from '../../../hoc/Auxiliary';
 
-function SideDrawer(props) {
+const SideDrawer = (props) => {
     let attachedClasses = [classes.SideDrawer, classes.Close];
     if (props.open) {
         attachedClasses = [classes.SideDrawer, classes.Open];
@@ -22,7 +22,7 @@ function SideDrawer(props) {
                 </nav>
             </div>
         </Auxiliary>
-    )
-}
+    );
+};
 
-export default SideDrawer
+export default SideDrawer;
