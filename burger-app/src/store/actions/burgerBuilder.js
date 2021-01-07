@@ -17,7 +17,7 @@ export const removeIngredient = (name) => {
 
 export const fetchIngredientsFailed = () => {
     return {
-        type: actionType.FETCH_INGREDIENTS_FAILED,
+        type: actionType.FETCH_INGREDIENTS_FAIL,
     }
 }
 

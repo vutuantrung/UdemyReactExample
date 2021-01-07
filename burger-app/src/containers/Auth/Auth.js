@@ -3,6 +3,9 @@ import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.module.css';
+import * as actionCreator from '../../store/actions/index';
+import withErrorHandler from '../../hoc/withErrorHandler/widthErrorHandler';
+import { connect } from 'react-redux';
 
 class Auth extends Component {
 
@@ -78,6 +81,14 @@ class Auth extends Component {
         this.setState({ controls: updatedControlsForm });
     }
 
+    submitHandler = (event) => {
+        event.preventDefault();
+        this.props.onAuth(
+            this.state.controls.email.value,
+            this.state.controls.password.value
+        );
+    }
+
     render() {
 
         const formElementsArray = [];
@@ -89,7 +100,7 @@ class Auth extends Component {
         }
 
         let form = (
-            <form onSubmit={this.orderHandler}>
+            <form onSubmit={this.submitHandler}>
                 {formElementsArray.map((formElem) => {
                     return (
                         <Input
@@ -119,4 +130,10 @@ class Auth extends Component {
     }
 }
 
-export default Auth;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAuth: (email, password) => dispatch(actionCreator.auth(email, password)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withErrorHandler(Auth));
