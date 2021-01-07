@@ -137,11 +137,20 @@ class Auth extends Component {
             </form>
 
         );
+
         if (this.props.loading) {
             form = <Spinner />;
         }
+
+        const errorMesssage = null;
+        if (this.props.error) {
+            // We use error message from firebase
+            errorMesssage = <p>{this.props.error.message}</p>
+        }
+
         return (
             <div className={classes.Auth}>
+                {errorMesssage}
                 <h4>Sign in</h4>
                 {form}
                 <Button
@@ -160,4 +169,11 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+const mapStateToProps = (state) => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
