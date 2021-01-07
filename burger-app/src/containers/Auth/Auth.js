@@ -5,6 +5,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.module.css';
 import * as actionCreator from '../../store/actions/index';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class Auth extends Component {
 
@@ -142,14 +143,20 @@ class Auth extends Component {
             form = <Spinner />;
         }
 
-        const errorMesssage = null;
+        let errorMesssage = null;
         if (this.props.error) {
             // We use error message from firebase
             errorMesssage = <p>{this.props.error.message}</p>
         }
 
+        let authRedirect = null;
+        if (this.props.isAuthenticated) {
+            authRedirect = <Redirect to='/' />
+        }
+
         return (
             <div className={classes.Auth}>
+                {authRedirect}
                 {errorMesssage}
                 <h4>Sign in</h4>
                 {form}
@@ -173,6 +180,7 @@ const mapStateToProps = (state) => {
     return {
         loading: state.auth.loading,
         error: state.auth.error,
+        isAuthenticated: state.auth.token != null,
     }
 }
 
