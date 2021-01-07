@@ -46,16 +46,8 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        const queryParams = [];
-        for (let i in this.props.ings) {
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.props.ings[i]));
-        }
-        queryParams.push('price=' + this.props.price);
-        const queryString = queryParams.join('&');
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
+        this.props.onInitPurchase();
+        this.props.history.push('/checkout');
     }
 
     render() {
@@ -115,6 +107,7 @@ const mapDispatchToProps = (dispatch) => {
         onIngredientAdded: (ingName) => dispatch(actionCreator.addIngredient(ingName)),
         onIngredientRemoved: (ingName) => dispatch(actionCreator.removeIngredient(ingName)),
         onInitIngredients: () => dispatch(actionCreator.initIngredients()),
+        onInitPurchase: () => dispatch(actionCreator.purchaseInit()),
     }
 }
 
