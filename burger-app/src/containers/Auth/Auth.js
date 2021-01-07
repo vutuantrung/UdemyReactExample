@@ -4,7 +4,6 @@ import Input from '../../components/UI/Input/Input';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.module.css';
 import * as actionCreator from '../../store/actions/index';
-import withErrorHandler from '../../hoc/withErrorHandler/widthErrorHandler';
 import { connect } from 'react-redux';
 
 class Auth extends Component {
