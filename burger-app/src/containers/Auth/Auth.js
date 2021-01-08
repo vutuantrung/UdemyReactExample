@@ -3,7 +3,7 @@ import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.module.css';
-import * as actionCreator from '../../store/actions/index';
+import * as action from '../../store/actions/index';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { updateObject, checkValidity } from '../../shared/utility';
@@ -146,8 +146,8 @@ class Auth extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAuth: (email, password, isSignUp) => dispatch(actionCreator.auth(email, password, isSignUp)),
-        onSetAuthRedirectPath: () => dispatch(actionCreator.setAuthRedirectPath('/')),
+        onAuth: (email, password, isSignUp) => dispatch(action.auth(email, password, isSignUp)),
+        onSetAuthRedirectPath: () => dispatch(action.setAuthRedirectPath('/')),
     }
 }
 

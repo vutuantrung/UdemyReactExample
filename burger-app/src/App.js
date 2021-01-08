@@ -7,7 +7,7 @@ import Orders from './containers/Orders/Orders';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 import { connect } from 'react-redux';
-import * as actionCreator from './store/actions/index';
+import * as action from './store/actions/index';
 
 class App extends Component {
   componentDidMount() {
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProp = (dispatch) => {
   return {
-    onTryAutoSignup: () => dispatch(actionCreator.authCheckState())
+    onTryAutoSignup: () => dispatch(action.authCheckState())
   }
 }
 
