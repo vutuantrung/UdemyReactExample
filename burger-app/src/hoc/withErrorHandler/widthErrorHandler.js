@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Modal from '../../components/UI/Modal/Modal';
 import Auxiliary from '../Auxiliary';
 
