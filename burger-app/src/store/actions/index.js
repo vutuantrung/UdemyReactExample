@@ -2,15 +2,19 @@ export {
     addIngredient,
     removeIngredient,
     initIngredients,
-} from './burgerBuilder';
+}
+from './burgerBuilder';
 
 export {
     purchaseInit,
     purchaseBurger,
     fetchOrders,
-} from './order';
+}
+from './order';
 
 export {
     auth,
     logout,
-} from './auth';
+    setAuthRedirectPath,
+}
+from './auth';
