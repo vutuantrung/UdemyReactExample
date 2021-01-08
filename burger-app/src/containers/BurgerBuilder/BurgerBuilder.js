@@ -10,7 +10,7 @@ import Auxiliary from '../../hoc/Auxiliary';
 import withErrorHandler from '../../hoc/withErrorHandler/widthErrorHandler';
 import * as action from '../../store/actions/index';
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 
     state = {
         purchasable: false,
