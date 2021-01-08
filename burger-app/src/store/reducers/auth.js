@@ -1,7 +1,7 @@
 import * as actionType from '../actions/actionType';
 import {
     updateObject
-} from '../utility';
+} from '../../shared/utility';
 
 const initialState = {
     token: null,
