@@ -1,9 +1,5 @@
-import React, {
-    Component
-} from 'react';
-import {
-    connect
-} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -36,16 +32,12 @@ export class BurgerBuilder extends Component {
             .reduce((sum, el) => {
                 return sum + el;
             }, 0);
-        this.setState({
-            purchasable: sum > 0
-        });
+        this.setState({ purchasable: sum > 0 });
     }
 
     purchaseHandler = () => {
         if (this.props.isAuthenticated) {
-            this.setState({
-                purchasing: true
-            });
+            this.setState({ purchasing: true });
         } else {
             this.props.onSetAuthRedirectPath('/checkout');
             this.props.history.push('/auth');
@@ -53,9 +45,7 @@ export class BurgerBuilder extends Component {
     }
 
     purchaseCancelHandler = () => {
-        this.setState({
-            purchasing: false
-        });
+        this.setState({ purchasing: false });
     }
 
     purchaseContinueHandler = () => {
@@ -71,74 +61,39 @@ export class BurgerBuilder extends Component {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
         let orderSummary = null;
-        let burger = this.props.error ? < p > Ingredients can 't be loaded!</p> : <Spinner />;
+        let burger = this.props.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
 
         if (this.props.ings) {
-            burger = ( <
-                Auxiliary >
-                <
-                Burger ingredients = {
-                    this.props.ings
-                }
-                /> <
-                BuildControls ingredientAdded = {
-                    this.props.onIngredientAdded
-                }
-                ingredientRemoved = {
-                    this.props.onIngredientRemoved
-                }
-                disabled = {
-                    disabledInfo
-                }
-                purchasable = {
-                    this.state.purchasable
-                }
-                ordered = {
-                    this.purchaseHandler
-                }
-                isAuth = {
-                    this.props.isAuthenticated
-                }
-                price = {
-                    this.props.price
-                }
-                /> <
-                /Auxiliary>
+            burger = (
+                <Auxiliary>
+                    <Burger ingredients={this.props.ings} />
+                    <BuildControls
+                        ingredientAdded={this.props.onIngredientAdded}
+                        ingredientRemoved={this.props.onIngredientRemoved}
+                        disabled={disabledInfo}
+                        purchasable={this.state.purchasable}
+                        ordered={this.purchaseHandler}
+                        isAuth={this.props.isAuthenticated}
+                        price={this.props.price} />
+                </Auxiliary>
             );
-            orderSummary = < OrderSummary
-            ingredients = {
-                this.props.ings
-            }
-            price = {
-                this.props.price
-            }
-            purchaseCancelled = {
-                this.purchaseCancelHandler
-            }
-            purchaseContinued = {
-                this.purchaseContinueHandler
-            }
-            />;
+            orderSummary = <OrderSummary
+                ingredients={this.props.ings}
+                price={this.props.price}
+                purchaseCancelled={this.purchaseCancelHandler}
+                purchaseContinued={this.purchaseContinueHandler} />;
         }
         if (this.state.loading) {
-            orderSummary = < Spinner / > ;
+            orderSummary = <Spinner />;
         }
         // {salad: true, meat: false, ...}
-        return ( <
-            Auxiliary >
-            <
-            Modal show = {
-                this.state.purchasing
-            }
-            modalClosed = {
-                this.purchaseCancelHandler
-            } > {
-                orderSummary
-            } <
-            /Modal> {
-                burger
-            } <
-            /Auxiliary>
+        return (
+            <Auxiliary>
+                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+                    {orderSummary}
+                </Modal>
+                {burger}
+            </Auxiliary>
         );
     }
 }
