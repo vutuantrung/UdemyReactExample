@@ -17,22 +17,20 @@ function Layout(props) {
         setShowSideDrawer(!showSideDrawer);
     }
 
-    render() {
-        return (
-            <Auxiliary>
-                <Toolbar
-                    isAuth={props.isAuthenticated}
-                    drawerToggleClicked={sideDrawerToggleHandler} />
-                <SideDrawer
-                    isAuth={props.isAuthenticated}
-                    open={showSideDrawer}
-                    closed={sideDrawerClosedHandler} />
-                <main className={classes.Content}>
-                    {props.children}
-                </main>
-            </Auxiliary>
-        )
-    }
+    return (
+        <Auxiliary>
+            <Toolbar
+                isAuth={props.isAuthenticated}
+                drawerToggleClicked={sideDrawerToggleHandler} />
+            <SideDrawer
+                isAuth={props.isAuthenticated}
+                open={showSideDrawer}
+                closed={sideDrawerClosedHandler} />
+            <main className={classes.Content}>
+                {props.children}
+            </main>
+        </Auxiliary>
+    )
 }
 
 const mapStateToProps = (state) => {
