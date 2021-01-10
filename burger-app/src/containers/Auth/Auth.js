@@ -10,6 +10,8 @@ import * as actions from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
 const Auth = props => {
+    const { onSetAuthRedirectPath, buildingBurger, authRedirectPath } = props;
+
     const [authForm, setAuthForm] = useState({
         email: {
             elementType: 'input',
@@ -43,10 +45,10 @@ const Auth = props => {
     const [isSignup, setIsSignup] = useState(true);
 
     useEffect(() => {
-        if (!props.buildingBurger && props.authRedirectPath !== '/') {
-            props.onSetAuthRedirectPath();
+        if (!buildingBurger && authRedirectPath !== '/') {
+            onSetAuthRedirectPath();
         }
-    }, []);
+    }, [onSetAuthRedirectPath, buildingBurger, authRedirectPath]);
 
     const inputChangedHandler = (event, controlName) => {
         const updatedControls = updateObject(authForm, {
