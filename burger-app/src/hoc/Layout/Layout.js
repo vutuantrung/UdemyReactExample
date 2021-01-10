@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './Layout.module.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
-import Auxiliary from '../Auxiliary';
+import Auxiliary from '../Auxiliary/Auxiliary';
 import { connect } from 'react-redux';
 
 class Layout extends Component {
